@@ -107,16 +107,17 @@ public class RemoteCalendar extends RemoteCalendarImpl {
 		// Manipulate "from" date to remove sub-day parts.
 		//
 		logger.info("From date passed as parameter: " + from);
-		Date date = DateUtils.truncate(from, Calendar.DATE);
-		logger.info("Cleaned up from date: " + date);
+		from = DateUtils.truncate(from, Calendar.DATE);
+		logger.info("Cleaned up from date: " + from);
 
 		// Manipulate "to" date to remove sub-day parts.
 		//
 		logger.info("To date passed as parameter: " + to);
-		from = DateUtils.truncate(to, Calendar.DATE);
+		to = DateUtils.truncate(to, Calendar.DATE);
 		logger.info("Cleaned up to date: " + to);
 
 		List<CalendarDate> result = new ArrayList<CalendarDate>();
+		Date date = from;
 		while(!date.after(to)) {
 			result.add(calendar.get(date));
 			date = DateUtils.addDays(date, 1);
